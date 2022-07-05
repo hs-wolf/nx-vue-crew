@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-vue-crew",
+  "version": "0.0.1",
+  "generators": {
+    "nx-vue-crew": {
+      "factory": "./src/generators/nx-vue-crew/generator",
+      "schema": "./src/generators/nx-vue-crew/schema.json",
+      "description": "nx-vue-crew generator"
+    }
+  }
+}

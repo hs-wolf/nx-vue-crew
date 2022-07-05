@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nx-vue-crew/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nx-vue-crew",
+        "main": "packages/nx-vue-crew/src/index.ts",
+        "tsConfig": "packages/nx-vue-crew/tsconfig.lib.json",
+        "assets": [
+          "packages/nx-vue-crew/*.md",
+          {
+            "input": "./packages/nx-vue-crew/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-vue-crew/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-vue-crew",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nx-vue-crew",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/nx-vue-crew/**/*.ts",
+          "packages/nx-vue-crew/generators.json",
+          "packages/nx-vue-crew/executors.json",
+          "packages/nx-vue-crew/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/nx-vue-crew"],
+      "options": {
+        "jestConfig": "packages/nx-vue-crew/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
