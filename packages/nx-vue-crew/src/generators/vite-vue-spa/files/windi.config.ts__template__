@@ -1,0 +1,12 @@
+import { defineConfig } from 'windicss/helpers';
+
+export default defineConfig({
+  extract: {
+    include: ['./src/**/*.{vue,html,js,jsx,ts,tsx}'],
+    exclude: ['node_modules', '.git'],
+  },
+  darkMode: 'class',
+  theme: {
+    extend: {},
+  },
+});

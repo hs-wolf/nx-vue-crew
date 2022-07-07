@@ -3,7 +3,6 @@
   "version": 2,
   "projects": {
     "nx-vue-crew": "packages/nx-vue-crew",
-    "nx-vue-crew-e2e": "e2e/nx-vue-crew-e2e",
-    "testing-vite-vue-spa": "e2e/testing-vite-vue-spa"
+    "nx-vue-crew-e2e": "e2e/nx-vue-crew-e2e"
   }
 }

@@ -1,3 +1,14 @@
+export enum CSSExtensions {
+  sass = 'sass',
+  none = 'none',
+}
+
+export enum CSSFrameworks {
+  tailwindcss = 'tailwindcss',
+  windicss = 'windicss',
+  none = 'none',
+}
+
 // CORE
 export const vite = { name: 'vite', version: '^2.8.0' };
 export const vitejsPluginVue = {
@@ -32,7 +43,7 @@ export const vitePluginVueLayouts = {
   version: '^0.6.0',
 };
 export const unpluginAutoImport = {
-  name: 'unplugin-auto-import/vite',
+  name: 'unplugin-auto-import',
   version: '^0.6.1',
 };
 export const unpluginVueComponents = {
@@ -62,6 +73,10 @@ export const autoprefixer = {
 export const tailwindcss = {
   name: 'tailwindcss',
   version: '^3.1.4',
+};
+export const vitePluginWindicss = {
+  name: 'vite-plugin-windicss',
+  version: '^1.8.6',
 };
 export const windicss = {
   name: 'windicss',
