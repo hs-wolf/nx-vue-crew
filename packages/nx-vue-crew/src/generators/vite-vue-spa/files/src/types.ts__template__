@@ -9,4 +9,4 @@ export type AppContext<HasRouter extends boolean = true> = {
   head: HeadClient | undefined;
 };
 
-export type UserModule = (context: AppContext) => void;
+export type UserPlugin = (context: AppContext) => void;

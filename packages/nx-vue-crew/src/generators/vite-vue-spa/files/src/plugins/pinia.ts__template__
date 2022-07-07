@@ -1,9 +1,9 @@
 import { createPinia } from 'pinia';
-import { UserModule } from '@src/types';
+import { UserPlugin } from '@src/types';
 
 const pinia = createPinia();
 
-export const install: UserModule = ({ app }) => {
+export const install: UserPlugin = ({ app }) => {
   app.use(pinia);
 };
 

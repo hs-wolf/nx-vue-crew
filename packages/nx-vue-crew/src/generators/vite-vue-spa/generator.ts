@@ -43,6 +43,7 @@ import {
   tailwindcss,
   vitePluginWindicss,
   windicss,
+  cssnano,
 } from './constants';
 
 function normalizeOptions(tree: Tree, options: Schema): NormalizedSchema {
@@ -104,7 +105,6 @@ function createApplicationFiles(tree: Tree, options: NormalizedSchema) {
     tree.delete(join(options.projectRoot, 'src/plugins/i18n.ts'));
     tree.delete(join(options.projectRoot, 'src/stores/locales.ts'));
   }
-  console.log(CSSFrameworks);
   if (options.cssFramework !== CSSFrameworks.tailwindcss) {
     tree.delete(join(options.projectRoot, 'tailwind.config.js'));
     tree.delete(join(options.projectRoot, 'postcss.config.js'));
@@ -120,7 +120,7 @@ function createServeTarget(options: NormalizedSchema): TargetConfiguration {
     options: {
       outputPath: joinPathFragments('dist', options.projectRoot),
       baseHref: '/',
-      configFile: 'vite.config.ts',
+      configFile: joinPathFragments(options.projectRoot, 'vite.config.ts'),
     },
     configurations: {
       production: {
@@ -152,7 +152,7 @@ function createBuildTarget(
     options: {
       outputPath: joinPathFragments('dist', options.projectRoot),
       baseHref: '/',
-      configFile: 'vite.config.ts',
+      configFile: joinPathFragments(options.projectRoot, 'vite.config.ts'),
     },
     configurations: {
       production: {
@@ -185,7 +185,7 @@ function createProject(tree: Tree, options: NormalizedSchema) {
     tags: options.parsedTags,
   };
   project.targets.serve = createServeTarget(options);
-  project.targets.serve = createBuildTarget(project, options);
+  project.targets.build = createBuildTarget(project, options);
 
   addProjectConfiguration(tree, options.projectName, project);
 
@@ -251,6 +251,7 @@ function addPackages(tree: Tree, options: NormalizedSchema) {
         [postcss.name]: postcss.version,
         [autoprefixer.name]: autoprefixer.version,
         [tailwindcss.name]: tailwindcss.version,
+        [cssnano.name]: cssnano.version,
       });
     }
     if (options.cssFramework === CSSFrameworks.windicss) {

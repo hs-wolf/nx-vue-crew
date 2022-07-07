@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n';
-import type { UserModule } from '@src/types';
+import type { UserPlugin } from '@src/types';
 
 import messages from '@intlify/vite-plugin-vue-i18n/messages';
 
@@ -9,7 +9,7 @@ const i18n = createI18n({
   messages,
 });
 
-export const install: UserModule = ({ app }) => {
+export const install: UserPlugin = ({ app }) => {
   app.use(i18n);
 };
 

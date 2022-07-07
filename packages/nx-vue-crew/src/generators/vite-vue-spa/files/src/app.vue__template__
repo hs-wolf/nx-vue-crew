@@ -1,0 +1,11 @@
+<script setup lang="ts">
+<% if(translationSupport) { -%>
+import { useLocalesStore } from '@stores/locales';
+
+const localesStore = useLocalesStore();
+<% } -%>
+</script>
+
+<template>
+  <router-view <% if(translationSupport) { %> :dir="localesStore.direction" <% } %> />
+</template>

@@ -1,7 +1,9 @@
 {
-  "name": "josh-israel",
-  "version": "0.0.0",
+  "name": "nx-vue-crew",
   "license": "MIT",
+  "author": {
+    "name": "josh-israel"
+  },
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
@@ -40,6 +42,7 @@
     "@vueuse/core": "^8.0.1",
     "@vueuse/head": "^0.7.5",
     "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.12",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "jest": "27.5.1",
@@ -59,5 +62,15 @@
     "vite": "^2.9.13",
     "vite-plugin-pages": "^0.21.3",
     "vite-plugin-vue-layouts": "^0.6.0"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.3.3",
+    "@vee-validate/i18n": "^4.5.7",
+    "pinia": "^2.0.11",
+    "tslib": "^2.3.0",
+    "vee-validate": "^4.5.8",
+    "vue": "^3.2.31",
+    "vue-i18n": "^9.1.9",
+    "vue-router": "^4.0.13"
   }
 }

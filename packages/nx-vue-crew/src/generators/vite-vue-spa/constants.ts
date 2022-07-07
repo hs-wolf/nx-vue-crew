@@ -74,6 +74,10 @@ export const tailwindcss = {
   name: 'tailwindcss',
   version: '^3.1.4',
 };
+export const cssnano = {
+  name: 'cssnano',
+  version: '^5.1.12',
+};
 export const vitePluginWindicss = {
   name: 'vite-plugin-windicss',
   version: '^1.8.6',

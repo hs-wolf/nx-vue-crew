@@ -1,4 +1,7 @@
-import dev from '@environments/environment.dev';
-import prod from '@environments/environment.prod';
+import IEnvironment from '@environments/environment.schema';
 
-export default import.meta.env.MODE === 'development' ? dev : prod;
+const environment: IEnvironment = {
+  API: 'URL DEV',
+};
+
+export default environment;
