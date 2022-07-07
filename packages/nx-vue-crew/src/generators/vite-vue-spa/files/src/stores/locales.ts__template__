@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { LOCALES_STORE, LOCALE_LOCAL_KEY } from '@src/constants';
-import { i18n } from '@modules/i18n';
+import { i18n } from '@plugins/i18n';
 import { useAlertsStore } from '@stores/alerts';
 
 const { locale: currentLocale } = i18n.global;

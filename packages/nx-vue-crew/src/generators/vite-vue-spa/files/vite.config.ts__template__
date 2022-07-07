@@ -27,7 +27,7 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       <% if(!automatizations) { %> '@components': path.resolve(__dirname, './src/components'), <% } -%>
       '@environments': path.resolve(__dirname, './src/environments'),
-      '@modules': path.resolve(__dirname, './src/modules'),
+      '@plugins': path.resolve(__dirname, './src/plugins'),
       '@stores': path.resolve(__dirname, './src/stores'),
       <% for(var i = 0; i < parsedLibraries.length; i++) { -%>
       '@<%= projectScope %>/<%= parsedLibraries[i].name %>': path.resolve(__dirname, '/<%= parsedLibraries[i].path %>/src/index.ts'),

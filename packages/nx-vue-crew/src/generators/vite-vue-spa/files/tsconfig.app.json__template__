@@ -29,7 +29,7 @@
       "@assets/*": ["./src/assets/*"],
       <% if(!automatizations) { %> "@components/*": ["./src/components/*"], <% } -%>
       "@environments/*": ["./src/environments/*"],
-      "@modules/*": ["./src/modules/*"],
+      "@plugins/*": ["./src/plugins/*"],
       "@stores/*": ["./src/stores/*"],
       <% for(var i = 0; i < parsedLibraries.length; i++) { -%>
       "@<%= projectScope %>/<%= parsedLibraries[i].name %>": ["/<%= parsedLibraries[i].path %>/src/index.ts"],
