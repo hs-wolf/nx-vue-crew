@@ -1,0 +1,43 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "/dist/out-tsc",
+    "types": [
+      "node",
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      <% if(onDemandSvgIcons) { %> "unplugin-icons/types/vue", <% } -%>
+      <% if(translationSupport) { %> "@intlify/vite-plugin-vue-i18n/client", <% } -%>
+    ],
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      <% if(!automatizations) { %> "@components/*": ["./src/components/*"], <% } -%>
+      "@environments/*": ["./src/environments/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@stores/*": ["./src/stores/*"],
+      <% for(var i = 0; i < parsedLibraries.length; i++) { -%>
+      "@<%= projectScope %>/<%= parsedLibraries[i].name %>": ["/<%= parsedLibraries[i].path %>/src/index.ts"],
+      <% } -%>
+    },
+    "composite": true,
+    "declaration": true
+  },
+  "include": ["**/*.ts", "**/*.js", "**/*.vue"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "/tsconfig.base.json",
+  "files": [
+    <% for(var i = 0; i < parsedLibraries.length; i++) { -%>
+      "/<%= parsedLibraries[i].path %>/src/index.ts",
+    <% } -%>
+  ],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

@@ -3,10 +3,10 @@
   "name": "nx-vue-crew",
   "version": "0.0.1",
   "generators": {
-    "nx-vue-crew": {
-      "factory": "./src/generators/nx-vue-crew/generator",
-      "schema": "./src/generators/nx-vue-crew/schema.json",
-      "description": "nx-vue-crew generator"
+    "vite-vue-spa": {
+      "factory": "./src/generators/vite-vue-spa/generator",
+      "schema": "./src/generators/vite-vue-spa/schema.json",
+      "description": "Opinionated Vite + Vue SPA"
     }
   }
 }

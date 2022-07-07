@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "ViteVueSpa",
+  "title": "Nx Application Options Schema.",
+  "description": "Nx Application Options Schema.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the application.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "How would you like to name your application?",
+      "pattern": "^[a-zA-Z].*$"
+    },
+    "directory": {
+      "description": "The directory of the new application.",
+      "type": "string"
+    },
+    "tags": {
+      "description": "Add tags to the project (used for linting).",
+      "type": "string"
+    },
+    "libraries": {
+      "description": "Create import aliases for these libraries. (e.g. models, utilities, validators).",
+      "type": "string"
+    },
+    "serverPort": {
+      "description": "The localhost port used by the server. (e.g., http://localhost:3001).",
+      "type": "number",
+      "default": 3001
+    },
+    "automatizations": {
+      "description": "File based routing, router based layouts, on demand APIs auto importing and on demand components auto importing.",
+      "type": "boolean",
+      "default": true
+    },
+    "onDemandSvgIcons": {
+      "description": "On-demand SVG Icons auto importing. (uses the https://iconify.design API and 'src/assets/icons' files).",
+      "type": "boolean",
+      "default": true
+    },
+    "translationSupport": {
+      "description": "Support to translate the app for multiple languages (uses vue-i18n).",
+      "type": "boolean",
+      "default": true
+    },
+    "cssFramework": {
+      "description": "Choose an utility based CSS Framework.",
+      "type": "string",
+      "enum": ["tailwindcss", "windicss", "none"],
+      "default": "tailwindcss"
+    },
+    "cssExtension": {
+      "description": "Choose a CSS Extension.",
+      "type": "string",
+      "enum": ["sass", "none"],
+      "default": "sass"
+    }
+  },
+  "required": ["name"]
+}

@@ -3,8 +3,9 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "declaration": true,
-    "types": []
+    "types": [],
+    "composite": true,
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "src/generators/vite-vue-spa/files/vite.config.ts", "src/generators/vite-vue-spa/files/src/plugins/router.ts__template__"],
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
 }

@@ -1,0 +1,83 @@
+import path from 'path';
+import { defineConfig } from 'vite';
+import Vue from '@vitejs/plugin-vue';
+<% if(automatizations) { -%>
+import Pages from 'vite-plugin-pages';
+import Layouts from 'vite-plugin-vue-layouts';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+<% } -%>
+<% if(onDemandSvgIcons) { -%>
+import Icons from 'unplugin-icons/vite';
+import IconsResolver from 'unplugin-icons/resolver';
+import { FileSystemIconLoader } from 'unplugin-icons/loaders';
+<% } -%>
+<% if(translationSupport) { %> import VueI18n from '@intlify/vite-plugin-vue-i18n'; <% } -%>
+<% if(cssFramework === 'windicss') { %> import WindiCSS from 'vite-plugin-windicss'; <% } %>
+
+export default defineConfig({
+  server: {
+    host: true,
+    port: <%= serverPort %>,
+  },
+  cacheDir: '/node_modules/.vite/<%= projectName %>',
+  resolve: {
+    alias: {
+      '@src': path.resolve(__dirname, './src'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      <% if(!automatizations) { %> '@components': path.resolve(__dirname, './src/components'), <% } -%>
+      '@environments': path.resolve(__dirname, './src/environments'),
+      '@modules': path.resolve(__dirname, './src/modules'),
+      '@stores': path.resolve(__dirname, './src/stores'),
+      <% for(var i = 0; i < parsedLibraries.length; i++) { -%>
+      '@<%= projectScope %>/<%= parsedLibraries[i].name %>': path.resolve(__dirname, '/<%= parsedLibraries[i].path %>/src/index.ts'),
+      <% } -%>
+    },
+  },
+  plugins: [
+    Vue(),
+    <% if(automatizations) { -%>
+    Pages(),
+    Layouts(),
+    AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        <% if(translationSupport) { %> 'vue-i18n', <% } -%>
+        '@vueuse/core',
+        '@vueuse/head',
+        'vee-validate',
+        'pinia',
+      ],
+      dts: './src/auto-imports.d.ts',
+    }),
+    Components({
+      <% if(onDemandSvgIcons) { -%>
+      resolvers: [
+        IconsResolver({ prefix: 'icon', customCollections: ['<%= projectScope %>'] }),
+      ],
+      <% } -%>
+      dts: './src/components.d.ts',
+      directoryAsNamespace: true,
+    }),
+    <% } -%>
+    <% if(onDemandSvgIcons) { -%>
+    Icons({
+      autoInstall: true,
+      compiler: 'vue3',
+      customCollections: {
+        '<%= projectScope %>': FileSystemIconLoader(
+          path.resolve(__dirname, './src/assets/icons')
+        ),
+      },
+    }),
+    <% } -%>
+    <% if(translationSupport) { -%>
+    VueI18n({
+      runtimeOnly: true,
+      compositionOnly: true,
+      include: [path.resolve(__dirname, './locales/**')],
+    }),
+    <% } -%>
+  ],
+});
