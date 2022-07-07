@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { ViteVueSpaGeneratorSchema } from './schema';
+import { Schema } from './schema';
 
 describe('vite-vue-spa generator', () => {
   let appTree: Tree;
-  const options: ViteVueSpaGeneratorSchema = { name: 'test' };
+  const options: Schema = { name: 'test' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

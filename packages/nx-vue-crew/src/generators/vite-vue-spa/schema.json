@@ -18,11 +18,13 @@
     },
     "directory": {
       "description": "The directory of the new application.",
-      "type": "string"
+      "type": "string",
+      "alias": "dir"
     },
     "tags": {
       "description": "Add tags to the project (used for linting).",
-      "type": "string"
+      "type": "string",
+      "alias": "t"
     },
     "libraries": {
       "description": "Create import aliases for these libraries. (e.g. models, utilities, validators).",

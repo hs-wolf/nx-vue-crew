@@ -1,37 +1,30 @@
+import { join } from 'path';
 import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout,
   names,
   offsetFromRoot,
   Tree,
+  GeneratorCallback,
+  getWorkspaceLayout,
+  normalizePath,
+  addDependenciesToPackageJson,
 } from '@nrwl/devkit';
-import * as path from 'path';
-import { join } from 'path';
-import { ViteVueSpaGeneratorSchema } from './schema';
+import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+import { Schema, NormalizedSchema } from './schema';
+import { vite, vitejsPluginVue } from './constants';
 
-interface NormalizedSchema extends ViteVueSpaGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectScope: string;
-  projectDirectory: string;
-  parsedTags: string[];
-  parsedLibraries: { name: string; path: string }[];
-  cssFileExtension: string;
-}
-
-function normalizeOptions(
-  tree: Tree,
-  options: ViteVueSpaGeneratorSchema
-): NormalizedSchema {
+function normalizeOptions(tree: Tree, options: Schema): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
-  const projectScope = getWorkspaceLayout(tree).npmScope;
+  const projectRoot = normalizePath(
+    `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`
+  );
+  const { npmScope: projectScope } = getWorkspaceLayout(tree);
   const parsedTags = options.tags
     ? options.tags.split(/[\s,]+/).map((s) => s.trim())
     : [];
@@ -52,7 +45,6 @@ function normalizeOptions(
     }
   };
   const cssFileExtension = setCssFileExtension();
-
   return {
     ...options,
     projectName,
@@ -74,7 +66,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   };
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    join(__dirname, 'files'),
     options.projectRoot,
     templateOptions
   );
@@ -84,8 +76,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   }
 }
 
-export default async function (tree: Tree, options: ViteVueSpaGeneratorSchema) {
-  const normalizedOptions = normalizeOptions(tree, options);
+function addProject(tree: Tree, normalizedOptions: NormalizedSchema) {
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
@@ -97,6 +88,28 @@ export default async function (tree: Tree, options: ViteVueSpaGeneratorSchema) {
     },
     tags: normalizedOptions.parsedTags,
   });
+}
+
+function addPackages(tree: Tree) {
+  const dependencies = {};
+  const finaldependencies = Object.assign(dependencies);
+
+  const devDependencies = { [vite.name]: vite.version };
+  const finaldevDependencies = Object.assign(devDependencies);
+
+  return addDependenciesToPackageJson(
+    tree,
+    finaldependencies,
+    finaldevDependencies
+  );
+}
+
+export default async function (tree: Tree, options: Schema) {
+  const normalizedOptions = normalizeOptions(tree, options);
+  const tasks: GeneratorCallback[] = [];
   addFiles(tree, normalizedOptions);
+  addProject(tree, normalizedOptions);
+  tasks.push(addPackages(tree));
+  runTasksInSerial(...tasks);
   await formatFiles(tree);
 }
