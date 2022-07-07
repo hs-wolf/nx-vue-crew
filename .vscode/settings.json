@@ -1,3 +1,6 @@
 {
-  "eslint.validate": ["json"]
+  "eslint.validate": ["json"],
+  "i18n-ally.localesPaths": [
+    "packages/nx-vue-crew/src/generators/vite-vue-spa/files/locales"
+  ]
 }

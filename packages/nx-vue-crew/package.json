@@ -1,6 +1,11 @@
 {
-  "name": "nx-vue-crew",
-  "version": "0.0.1",
+  "name": "@josh-israel/nx-vue-crew",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josh-israel/nx-vue-crew.git"
+  },
+  "homepage": "https://github.com/josh-israel/nx-vue-crew",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json"
