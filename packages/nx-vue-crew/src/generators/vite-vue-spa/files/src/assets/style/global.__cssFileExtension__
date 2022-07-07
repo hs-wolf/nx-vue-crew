@@ -1,0 +1,11 @@
+<% if(cssFramework === 'tailwindcss') { -%> 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+<% } -%>
+
+@import url('https://fonts.googlc:\Users\Unobraid\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-browser\workbench\workbench.htmleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
