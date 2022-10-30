@@ -25,5 +25,4 @@ export default defineNuxtConfig({
   tailwindcss: {
     viewer: false,
   },
-  image: {},
 });

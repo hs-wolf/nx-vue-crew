@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex flex-col">
-    <h1 class="text-2xl">Home</h1>
+    <h1 class="text-2xl">{{ $t('key') }}</h1>
     <NuxtImg
       src="/nuxt-logo.png"
       alt="Nuxt Logo"
