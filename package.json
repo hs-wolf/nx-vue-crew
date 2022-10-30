@@ -11,7 +11,10 @@
   "devDependencies": {
     "@nrwl/cli": "14.8.2",
     "@nrwl/workspace": "14.8.2",
+    "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
     "@nuxtjs/tailwindcss": "^6.1.2",
+    "@vueuse/core": "^9.4.0",
+    "@vueuse/nuxt": "^9.4.0",
     "nuxt": "^3.0.0-rc.12",
     "nx": "14.8.2",
     "prettier": "^2.6.2",

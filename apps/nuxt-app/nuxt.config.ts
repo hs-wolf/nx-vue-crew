@@ -21,8 +21,9 @@ export default defineNuxtConfig({
     },
   },
   css: ['assets/css/global.css'],
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image-edge'],
   tailwindcss: {
     viewer: false,
   },
+  image: {},
 });
