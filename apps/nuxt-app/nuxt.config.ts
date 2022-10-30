@@ -20,5 +20,9 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
-  css: ['~/assets/css/global.css'],
+  css: ['assets/css/global.css'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
+  tailwindcss: {
+    viewer: false,
+  },
 });
