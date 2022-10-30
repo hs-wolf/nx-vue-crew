@@ -37,3 +37,16 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Nuxt Apps
+apps/**/node_modules
+apps/**/*.log*
+apps/**/*.nuxt
+apps/**/*.nitro
+apps/**/*.cache
+apps/**/*.output
+apps/**/*.env
+apps/**/dist
+
+# Custom
+.env

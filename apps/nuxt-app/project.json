@@ -1,0 +1,39 @@
+{
+  "name": "nuxt-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nuxt-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nuxi build ./apps/nuxt-app"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nuxi dev ./apps/nuxt-app"
+      }
+    },
+    "generate-pages": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nuxi generate ./apps/nuxt-app"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nuxi preview ./dist/apps/nuxt-app"
+      }
+    },
+    "prepare": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nuxi prepare ./apps/nuxt-app"
+      }
+    }
+  },
+  "tags": []
+}
