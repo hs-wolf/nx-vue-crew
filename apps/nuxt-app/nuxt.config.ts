@@ -1,3 +1,7 @@
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite';
+
 export default defineNuxtConfig({
   typescript: { shim: false },
   nitro: {
@@ -24,5 +28,12 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image-edge'],
   tailwindcss: {
     viewer: false,
+  },
+  vite: {
+    plugins: [
+      VueI18nVitePlugin({
+        include: [resolve(dirname(fileURLToPath(import.meta.url)), 'locales/*.json')],
+      }),
+    ],
   },
 });
